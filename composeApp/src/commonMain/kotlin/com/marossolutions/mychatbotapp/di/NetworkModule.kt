@@ -18,6 +18,7 @@ val networkModule = module {
         val openAIApiKey: String = get(qualifier = openAIApiKey)
 
         HttpClient {
+            expectSuccess = true
             install(plugin = ContentNegotiation) {
                 json(
                     json = Json {
