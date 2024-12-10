@@ -9,11 +9,15 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.marossolutions.mychatbotapp.navigation.screens.ScreenChatGPTChatbot
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import com.marossolutions.mychatbotapp.navigation.screens.ScreenHome
+import com.marossolutions.mychatbotapp.navigation.screens.ScreenTensorflowLiteChatbot
 import com.marossolutions.mychatbotapp.navigation.screens.ScreenWelcome
+import com.marossolutions.mychatbotapp.ui.ChatGPTChatbotScreen
 import com.marossolutions.mychatbotapp.ui.HomeScreen
+import com.marossolutions.mychatbotapp.ui.TensorflowChatbotScreen
 import com.marossolutions.mychatbotapp.ui.WelcomeScreen
 
 @Composable
@@ -32,6 +36,12 @@ fun AppNavHost(
         }
         composable<ScreenHome> {
             HomeScreen()
+        }
+        composable<ScreenChatGPTChatbot> {
+            ChatGPTChatbotScreen()
+        }
+        composable<ScreenTensorflowLiteChatbot> {
+            TensorflowChatbotScreen()
         }
     }
 

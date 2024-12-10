@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -37,103 +39,30 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun HomeScreen(viewModel: HomeViewModel = koinViewModel()) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     HomeScreenContent(
-        uiState = uiState,
-        sendMessage = viewModel::sendMessage
+        navigateToChatGPTChatbot = viewModel::navigateToChatGPTChatbot,
+        navigateToTensorflowChatbot = viewModel::navigateToTensorflowChatbot
     )
 }
 
 @Composable
-private fun HomeScreenContent(uiState: HomeUiState, sendMessage: (String) -> Unit) {
-    when (val state = uiState) {
-        HomeUiState.Error -> Box {
-            FullScreenLoading()
-            var isDialogOpen by remember { mutableStateOf(true) }
-            if (isDialogOpen) {
-                ErrorDialog {
-                    isDialogOpen = false
-                }
-            }
-        }
-
-        HomeUiState.Loading -> FullScreenLoading()
-        is HomeUiState.Content -> Column(
-            modifier = Modifier.fillMaxSize()
-                .padding(16.dp),
-        ) {
-            ChatHistory(chatHistory = state.chatMessages, modifier = Modifier.weight(1f))
-            ChatInput(sendMessage = sendMessage)
-        }
-    }
-}
-
-@Composable
-private fun ChatHistory(chatHistory: List<ChatMessage>, modifier: Modifier = Modifier) {
-    LazyColumn(
-        modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+private fun HomeScreenContent(
+    navigateToChatGPTChatbot: () -> Unit,
+    navigateToTensorflowChatbot: () -> Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxSize()
+            .padding(16.dp),
     ) {
-        items(chatHistory) {
-            ChatBubble(it)
+        Button(onClick = navigateToChatGPTChatbot) {
+            Text("ChatGPT Chatbot")
         }
-    }
-}
 
-@Composable
-private fun ChatBubble(message: ChatMessage) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth(),
-        contentAlignment = if (message is UserChatMessage) Alignment.CenterEnd else Alignment.CenterStart
-    ) {
-        Surface(
-            shape = MaterialTheme.shapes.medium,
-            color = if (message is UserChatMessage) Color(0xFFDCF8C6) else MaterialTheme.colors.primary,
-            modifier = Modifier.padding(8.dp)
-        ) {
-            Text(
-                text = when (message) {
-                    is UserChatMessage -> message.message
-                    is AIChatAnswer -> message.answer
-                },
-                modifier = Modifier.padding(12.dp),
-                color = if (message is UserChatMessage) Color.Black else Color.White
-            )
-        }
-    }
-}
+        Spacer(modifier = Modifier.height(16.dp))
 
-@Composable
-private fun ChatInput(sendMessage: (String) -> Unit) {
-    var textFieldValue by remember { mutableStateOf(TextFieldValue("")) }
-
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        BasicTextField(
-            value = textFieldValue,
-            onValueChange = { textFieldValue = it },
-            modifier = Modifier
-                .weight(1f)
-                .padding(8.dp)
-                .border(1.dp, Color.Gray, MaterialTheme.shapes.small)
-                .padding(8.dp)
-        )
-
-        Button(
-            onClick = {
-                val message = textFieldValue.text.trim()
-                if (message.isNotEmpty()) {
-                    sendMessage(message)
-                    textFieldValue = TextFieldValue("") // Clear input
-                }
-            },
-            modifier = Modifier.padding(start = 8.dp)
-        ) {
-            Text("Send")
+        Button(onClick = navigateToTensorflowChatbot) {
+            Text("Tensorflow Chatbot")
         }
     }
 }

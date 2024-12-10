@@ -3,6 +3,7 @@ package com.marossolutions.mychatbotapp.ui
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -14,13 +15,13 @@ import androidx.compose.ui.unit.sp
 import com.marossolutions.mychatbotapp.viewmodel.WelcomeViewModel
 import mychatbotapp.composeapp.generated.resources.Res
 import mychatbotapp.composeapp.generated.resources.welcome_button_text
+import mychatbotapp.composeapp.generated.resources.welcome_description
 import mychatbotapp.composeapp.generated.resources.welcome_title
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun WelcomeScreen(viewModel: WelcomeViewModel = koinViewModel()) {
-
     WelcomeScreenContent(
         navigateToNextScreen = viewModel::navigateToNextScreen
     )
@@ -34,7 +35,13 @@ fun WelcomeScreenContent(navigateToNextScreen: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = stringResource(Res.string.welcome_title), fontSize = 32.sp)
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(text = stringResource(Res.string.welcome_description))
+
         Spacer(modifier = Modifier.weight(1f))
+
         Button(onClick = navigateToNextScreen) {
             Text(text = stringResource(Res.string.welcome_button_text))
         }

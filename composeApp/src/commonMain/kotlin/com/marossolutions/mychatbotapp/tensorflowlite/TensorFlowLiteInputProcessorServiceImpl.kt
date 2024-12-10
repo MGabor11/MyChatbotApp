@@ -1,0 +1,3 @@
+package com.marossolutions.mychatbotapp.tensorflowlite
+
+expect class TensorFlowLiteInputProcessorServiceImpl :TensorFlowLiteInputProcessorService

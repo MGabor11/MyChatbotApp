@@ -20,6 +20,7 @@ coroutines = "1.9.0"
 serialization-json-verison = "1.7.3"
 buildkonfig = "0.15.1"
 ktor = "2.3.11"
+playServicesTfliteJava = "16.4.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -60,6 +61,9 @@ ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "k
 # Ktor: To access content negotiation
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+# Tensorflow Lite
+play-services-tflite-java = { module = "com.google.android.gms:play-services-tflite-java", version.ref = "playServicesTfliteJava" }
 
 [bundles]
 ktor = ["ktor-client-core", "ktor-client-content-negotiation", "ktor-serialization-kotlinx-json", "ktor-client-logging"]

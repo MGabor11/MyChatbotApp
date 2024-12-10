@@ -1,0 +1,106 @@
+{
+    "intents": [
+        {
+            "tag": "christmas_greeting",
+            "patterns": ["Merry Christmas!", "Happy Holidays!", "Season's Greetings", "Merry Xmas", "Festive wishes"],
+            "responses": ["Merry Christmas to you too!", "Happy Holidays!", "Wishing you a joyful holiday season!", "Season's Greetings!"],
+            "context_set": "greeting",
+            "context_filter": ""
+        },
+        {
+            "tag": "christmas_countdown",
+            "patterns": ["How many days until Christmas?", "When is Christmas?", "Is it Christmas yet?", "How far away is Christmas?"],
+            "responses": ["Christmas is on December 25th! Start counting the days!", "It's not far now—get ready for the holidays!", "Christmas is coming soon! December 25th is the big day."],
+            "context_set": "countdown",
+            "context_filter": ""
+        },
+        {
+            "tag": "christmas_traditions",
+            "patterns": ["What are Christmas traditions?", "How do people celebrate Christmas?", "Tell me about Christmas customs", "What do people do on Christmas?"],
+            "responses": [
+                "Christmas traditions include decorating a tree, exchanging gifts, and enjoying festive meals.",
+                "People often celebrate Christmas by spending time with family, singing carols, and giving presents.",
+                "Baking cookies, hanging stockings, and visiting Santa are also common traditions!"
+            ],
+            "context_set": "traditions",
+            "context_filter": ""
+        },
+        {
+            "tag": "santa",
+            "patterns": ["Is Santa real?", "Tell me about Santa Claus", "Who is Santa?", "What does Santa do?", "Does Santa visit me?"],
+            "responses": [
+                "Santa is a jolly man who brings gifts to children on Christmas Eve!",
+                "Santa Claus lives at the North Pole and works with elves to make toys for Christmas.",
+                "Of course Santa visits you if you've been good all year!",
+                "Santa loves spreading joy and cheer during Christmas!"
+            ],
+            "context_set": "",
+            "context_filter": "traditions"
+        },
+        {
+            "tag": "gift_ideas",
+            "patterns": ["What should I buy for Christmas?", "Any gift ideas?", "What are good Christmas presents?", "Help me pick a gift!"],
+            "responses": [
+                "How about cozy socks, a nice book, or a box of chocolates?",
+                "You can never go wrong with a thoughtful handmade gift!",
+                "Tech gadgets, festive decorations, or gift cards are great ideas too!"
+            ],
+            "context_set": "gift_help",
+            "context_filter": ""
+        },
+        {
+            "tag": "decorations",
+            "patterns": ["How do I decorate for Christmas?", "What are Christmas decorations?", "Tell me about Christmas trees", "What is a good Christmas theme?"],
+            "responses": [
+                "Decorate with a Christmas tree, twinkling lights, and ornaments!",
+                "You can use wreaths, garlands, and candles for a cozy holiday vibe.",
+                "Try a red and green theme, or go modern with silver and gold!"
+            ],
+            "context_set": "",
+            "context_filter": "gift_help"
+        },
+        {
+            "tag": "christmas_food",
+            "patterns": ["What do people eat at Christmas?", "Tell me about Christmas food", "What are traditional Christmas dishes?", "What's a good holiday meal?"],
+            "responses": [
+                "Traditional Christmas meals include roast turkey, ham, and stuffing.",
+                "Don't forget about desserts like mince pies, Christmas pudding, and cookies!",
+                "Hot chocolate, eggnog, and mulled wine are festive drinks people enjoy."
+            ],
+            "context_set": "food",
+            "context_filter": ""
+        },
+        {
+            "tag": "new_year",
+            "patterns": ["What comes after Christmas?", "Tell me about New Year's", "When is New Year's Eve?", "How do people celebrate New Year's?"],
+            "responses": [
+                "After Christmas, it's time to celebrate the New Year on December 31st!",
+                "People often celebrate New Year's with parties, fireworks, and resolutions.",
+                "New Year's is a time to reflect on the past year and welcome the new one!"
+            ],
+            "context_set": "new_year",
+            "context_filter": ""
+        },
+        {
+            "tag": "thank_you",
+            "patterns": ["Thanks", "Thank you", "That's helpful", "I appreciate it", "Thanks for the info"],
+            "responses": ["You're welcome!", "Happy to help!", "Glad I could assist!", "Anytime!"],
+            "context_set": "",
+            "context_filter": ""
+        },
+        {
+            "tag": "goodbye",
+            "patterns": ["Goodbye", "See you later", "Merry Christmas and goodbye", "Happy Holidays and goodbye", "Bye"],
+            "responses": ["Goodbye and Merry Christmas!", "See you later—have a great holiday season!", "Take care and enjoy the holidays!", "Bye! Wishing you a joyful Christmas!"],
+            "context_set": "",
+            "context_filter": "new_year"
+        },
+        {
+            "tag": "christmas_car",
+            "patterns": ["Christmas car present", "Can you recommend a rooster car for Christmas?", "Can you suggest a rooster car for Christmas?", "What about my christmas present?"],
+            "responses": ["Toyota Supra", "Mazda MX5", "Audi RS6", "Tesla Model 3", "Suzuki Swift"],
+            "context_set": "",
+            "context_filter": ""
+        }
+    ]
+}

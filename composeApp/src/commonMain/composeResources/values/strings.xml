@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="welcome_title">Welcome</string>
+    <string name="welcome_description">Welcome</string>
     <string name="welcome_button_text">Start</string>
     <string name="home_title">Home</string>
+    <string name="chat_gpt_chatbot_title">ChatGPT Chatbot</string>
+    <string name="tensorflow_lite_chatbot_title">TensorFlow Lite Chatbot</string>
 </resources>

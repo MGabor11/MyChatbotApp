@@ -14,7 +14,7 @@ class SimpleNavigatorImpl : SimpleNavigator {
     private val _currentAppScreen = MutableStateFlow<AppScreen?>(null)
     override val currentAppScreen = _currentAppScreen.asStateFlow()
 
-    override fun setCurrentAppScreen(screen: AppScreen?) { // TODO
+    override fun setCurrentAppScreen(screen: AppScreen?) {
         _currentAppScreen.value = screen
     }
 

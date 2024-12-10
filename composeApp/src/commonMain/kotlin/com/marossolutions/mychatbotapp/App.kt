@@ -21,9 +21,13 @@ import com.marossolutions.mychatbotapp.navigation.AppNavHost
 import com.marossolutions.mychatbotapp.navigation.screens.ScreenHome
 import com.marossolutions.mychatbotapp.navigation.screens.ScreenWelcome
 import com.marossolutions.mychatbotapp.navigation.SimpleNavigator
+import com.marossolutions.mychatbotapp.navigation.screens.ScreenChatGPTChatbot
+import com.marossolutions.mychatbotapp.navigation.screens.ScreenTensorflowLiteChatbot
 import com.marossolutions.mychatbotapp.theme.AppTheme
 import mychatbotapp.composeapp.generated.resources.Res
+import mychatbotapp.composeapp.generated.resources.chat_gpt_chatbot_title
 import mychatbotapp.composeapp.generated.resources.home_title
+import mychatbotapp.composeapp.generated.resources.tensorflow_lite_chatbot_title
 import mychatbotapp.composeapp.generated.resources.welcome_title
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.KoinContext
@@ -50,6 +54,8 @@ fun App() {
                                     when (appScreen) {
                                         is ScreenWelcome -> Res.string.welcome_title
                                         is ScreenHome -> Res.string.home_title
+                                        is ScreenChatGPTChatbot -> Res.string.chat_gpt_chatbot_title
+                                        is ScreenTensorflowLiteChatbot -> Res.string.tensorflow_lite_chatbot_title
                                         else -> null
                                     }
                                 }

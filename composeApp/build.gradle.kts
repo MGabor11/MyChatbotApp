@@ -46,6 +46,8 @@ kotlin {
 
             // Ktor
             implementation(libs.ktor.client.android)
+
+            implementation(libs.play.services.tflite.java)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
