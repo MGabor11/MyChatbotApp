@@ -4,11 +4,15 @@ import com.marossolutions.mychatbotapp.model.api.CompletionRequest
 import com.marossolutions.mychatbotapp.model.api.Message
 import com.marossolutions.mychatbotapp.model.domain.AnswerState
 import com.marossolutions.mychatbotapp.model.domain.AIChatAnswer
+import com.marossolutions.mychatbotapp.model.domain.ModelsFetchingState
+import com.marossolutions.mychatbotapp.model.domain.OpenAIModel
 import com.marossolutions.mychatbotapp.model.domain.UserChatMessage
 import com.marossolutions.mychatbotapp.service.ChatGPTService
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.datetime.Instant
+
+private const val COMPLETION_REQUEST_ROLE = "user"
 
 class ChatRepositoryImpl(
     private val chatGPTService: ChatGPTService
@@ -16,19 +20,24 @@ class ChatRepositoryImpl(
 
     private val _chatAnswerState = MutableStateFlow<AnswerState>(AnswerState.Init)
 
+    private val _modelsFetchingState =
+        MutableStateFlow<ModelsFetchingState>(ModelsFetchingState.Init)
+
     override val chatAnswerState = _chatAnswerState.asStateFlow()
 
-    override suspend fun sendMessage(chatMessage: UserChatMessage) {
+    override val modelsFetchingState = _modelsFetchingState.asStateFlow()
+
+    override suspend fun sendMessage(message: UserChatMessage) {
         try {
             _chatAnswerState.value = AnswerState.Loading
 
             val response = chatGPTService.getAnswer(
                 CompletionRequest(
-                    model = chatMessage.model,
+                    model = message.model,
                     messages = listOf(
                         Message(
-                            role = "user",
-                            content = chatMessage.message
+                            role = COMPLETION_REQUEST_ROLE,
+                            content = message.message
                         )
                     )
                 )
@@ -37,8 +46,27 @@ class ChatRepositoryImpl(
                 AIChatAnswer(response.choices.first().message.content)
             )
         } catch (exception: Exception) {
-            // TODO check it
             _chatAnswerState.value = AnswerState.Error
+        }
+    }
+
+    override suspend fun fetchOpenAIModels() {
+        try {
+            _modelsFetchingState.value = ModelsFetchingState.Loading
+
+            val response = chatGPTService.getAvailableModels()
+
+            _modelsFetchingState.value = ModelsFetchingState.Success(
+                response.models.map { model ->
+                    OpenAIModel(
+                        id = model.id,
+                        created = Instant.fromEpochSeconds(model.created),
+                        ownedBy = model.ownedBy
+                    )
+                }.sortedBy { it.id }
+            )
+        } catch (exception: Exception) {
+            _modelsFetchingState.value = ModelsFetchingState.Error
         }
     }
 }

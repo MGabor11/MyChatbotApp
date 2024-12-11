@@ -1,7 +1,5 @@
 package com.marossolutions.mychatbotapp.di
 
-import com.marossolutions.mychatbotapp.di.platformModule
-import com.marossolutions.mychatbotapp.di.sharedModule
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 

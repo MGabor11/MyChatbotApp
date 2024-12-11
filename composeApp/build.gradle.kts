@@ -47,6 +47,7 @@ kotlin {
             // Ktor
             implementation(libs.ktor.client.android)
 
+            // LiteRT
             implementation(libs.play.services.tflite.java)
         }
         commonMain.dependencies {
@@ -59,6 +60,7 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.kotlinx.datetime)
 
             // DI
             api(libs.koin.core)
