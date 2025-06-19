@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
+
 internal class ChatGPTChatbotViewModel(
     private val chatRepository: ChatRepository
 ) : ViewModel() {
