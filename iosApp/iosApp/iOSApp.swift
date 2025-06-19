@@ -6,7 +6,7 @@ struct iOSApp: App {
 
     init() {
         InitKoinKt.doInitKoin()
-        NativeResponse_iosKt.setNativeResponseProvider(provider: IOSNativeResponseProvider())
+        NativeResponseKt.setNativeResponseProvider(provider: IOSNativeResponseProvider())
     }
 
     var body: some Scene {

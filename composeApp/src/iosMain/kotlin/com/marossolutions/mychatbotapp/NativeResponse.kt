@@ -1,11 +1,11 @@
 package com.marossolutions.mychatbotapp
 
-actual suspend fun loadResourcesNative() {
+suspend fun loadResourcesNative() {
     nativeProvider?.loadResources()
         ?: throw IllegalStateException("NativeResponseProvider not set")
 }
 
-actual fun predictNative(message: String): String {
+fun predictNative(message: String): String {
     return nativeProvider?.predict(message)
         ?: throw IllegalStateException("NativeResponseProvider not set")
 }
