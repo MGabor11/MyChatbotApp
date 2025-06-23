@@ -8,7 +8,4 @@ import org.koin.dsl.module
 
 actual val platformModule = module {
     singleOf(::TensorFlowLiteInputProcessorServiceImpl).bind<TensorFlowLiteInputProcessorService>()
-    /*single<TensorFlowLiteInputProcessorService> {
-        TensorFlowLiteInputProcessorServiceImpl(get())
-    }*/
 }

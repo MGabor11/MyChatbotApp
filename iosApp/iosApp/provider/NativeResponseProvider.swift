@@ -1,10 +1,11 @@
 //
-//  NativeResponse.swift
+//  NativeResponseProvider.swift
 //  iosApp
 //
-//  Created by Marosfalvi Gábor on 2025. 06. 19..
+//  Created by Marosfalvi Gábor on 2025. 06. 23..
 //  Copyright © 2025 orgName. All rights reserved.
 //
+
 import ComposeApp
 
 class IOSNativeResponseProvider: NativeResponseProvider {

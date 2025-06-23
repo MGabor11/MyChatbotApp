@@ -1,21 +1,17 @@
 package com.marossolutions.mychatbotapp
 
+import com.marossolutions.mychatbotapp.provider.NativeResponseProvider
+
 suspend fun loadResourcesNative() {
-    nativeProvider?.loadResources()
-        ?: throw IllegalStateException("NativeResponseProvider not set")
+    getNativeProvider().loadResources()
 }
 
-fun predictNative(message: String): String {
-    return nativeProvider?.predict(message)
-        ?: throw IllegalStateException("NativeResponseProvider not set")
-}
-
-interface NativeResponseProvider {
-    suspend fun loadResources()
-    fun predict(message: String): String
-}
+fun predictNative(message: String): String = getNativeProvider().predict(message)
 
 private var nativeProvider: NativeResponseProvider? = null
+
+private fun getNativeProvider() = nativeProvider
+    ?: throw IllegalStateException("NativeResponseProvider not set")
 
 fun setNativeResponseProvider(provider: NativeResponseProvider) {
     nativeProvider = provider
